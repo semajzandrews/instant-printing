@@ -34,41 +34,51 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* MID plane — the violet press sheet */}
+      {/* MID plane — the violet press sheet, now grounded in a real press */}
       <motion.div
         style={{ y: midY }}
         className="pointer-events-none absolute right-[6%] top-[18%] hidden md:block"
         aria-hidden
       >
         <div className="cropmark">
-          <div
-            className="h-[58vh] w-[40vh] rotate-[3deg] rounded-[3px] shadow-[0_40px_90px_-30px_rgba(58,38,104,0.55)]"
-            style={{
-              background:
-                "linear-gradient(155deg, var(--violet-2), var(--violet) 55%, var(--violet-3))",
-            }}
+          <figure
+            className="relative h-[58vh] w-[40vh] overflow-hidden rotate-[3deg] rounded-[3px] shadow-[0_40px_90px_-30px_rgba(58,38,104,0.55)]"
           >
-            <div className="flex h-full flex-col justify-between p-6">
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-3/70">
+            {/* the running press, graded to the press-ink violet duotone */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-press.jpg"
+              alt="Ink rolled onto the press at Instant Printing on Main Street"
+              className="absolute inset-0 h-full w-full object-cover saturate-[0.7]"
+            />
+            {/* violet wash that turns the photo into a single-ink plate */}
+            <div
+              className="absolute inset-0 mix-blend-color"
+              style={{ background: "linear-gradient(160deg, var(--violet-2), var(--violet-3))" }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(155deg, rgba(91,63,160,0.30), rgba(58,38,104,0.40))" }}
+            />
+            {/* darkened foot so the type stays fully legible */}
+            <div className="absolute inset-0 bg-gradient-to-t from-violet-3/85 via-violet-3/20 to-violet-3/35" />
+
+            <div className="relative flex h-full flex-col justify-between p-6">
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-3/80">
                 proof · 355 main st
               </span>
-              <div className="space-y-3">
-                <div className="h-px w-full bg-paper-3/25" />
-                <div className="h-px w-3/4 bg-paper-3/25" />
-                <div className="h-px w-5/6 bg-paper-3/25" />
-              </div>
-              <span className="font-display text-[34px] leading-none text-paper-3">
+              <span className="font-display text-[34px] leading-none text-paper-3 drop-shadow-[0_2px_10px_rgba(28,24,34,0.5)]">
                 Fresh
                 <br />
                 off the
                 <br />
                 press.
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-3/70">
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-3/80">
                 ready today
               </span>
             </div>
-          </div>
+          </figure>
         </div>
       </motion.div>
 
@@ -118,6 +128,39 @@ export default function Hero() {
           <span>Cards · Banners · Copies</span>
           <span className="hidden sm:inline text-rule-2">/</span>
           <span>Walk-ins welcome</span>
+        </div>
+
+        {/* MOBILE press plate — brings the page to life on phones (desktop uses the floating plane) */}
+        <div className="mt-10 md:hidden">
+          <div className="cropmark">
+            <figure className="relative aspect-[5/3] w-full overflow-hidden rounded-[3px] shadow-[0_24px_60px_-28px_rgba(58,38,104,0.55)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-press.jpg"
+                alt="Ink rolled onto the press at Instant Printing on Main Street"
+                className="absolute inset-0 h-full w-full object-cover saturate-[0.7]"
+              />
+              <div
+                className="absolute inset-0 mix-blend-color"
+                style={{ background: "linear-gradient(160deg, var(--violet-2), var(--violet-3))" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(150deg, rgba(91,63,160,0.28), rgba(58,38,104,0.40))" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-violet-3/85 via-transparent to-violet-3/20" />
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                <span className="font-display text-[26px] leading-none text-paper-3 drop-shadow-[0_2px_10px_rgba(28,24,34,0.5)]">
+                  Fresh off
+                  <br />
+                  the press.
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-paper-3/80">
+                  ready today
+                </span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </motion.div>
 
