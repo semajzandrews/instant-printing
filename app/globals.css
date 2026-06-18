@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Instant Printing · Tokens
+   Lineage: pressroom + risograph studio + editorial paper.
+   Single press-ink violet on warm paper. Dreamlike depth, soft light, grain. */
+@theme {
+  --color-paper:    #F3EEE6;   /* warm paper ground */
+  --color-paper-2:  #EAE3D6;   /* deeper paper / panel */
+  --color-paper-3:  #FBF8F2;   /* highlight sheet */
+  --color-ink:      #1C1822;   /* near-black plum ink */
+  --color-ink-2:    #4A4356;   /* muted body ink */
+  --color-violet:   #5B3FA0;   /* press-ink violet (THE accent) */
+  --color-violet-2: #7B5FC0;   /* lifted violet */
+  --color-violet-3: #3A2668;   /* deep violet shadow */
+  --color-cyan:     #4FB4C7;   /* separation plate hint (subtle) */
+  --color-magenta:  #C9577F;   /* separation plate hint (subtle) */
+  --color-rule:     rgba(28,24,34,0.14);
+  --color-rule-2:   rgba(28,24,34,0.30);
+
+  --font-display: "Author", "Georgia", ui-serif, serif;
+  --font-body:    "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--font-mono, "Spline Sans Mono"), ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    --paper:#F3EEE6; --paper-2:#EAE3D6; --paper-3:#FBF8F2;
+    --ink:#1C1822; --ink-2:#4A4356;
+    --violet:#5B3FA0; --violet-2:#7B5FC0; --violet-3:#3A2668;
+    --cyan:#4FB4C7; --magenta:#C9577F;
+    --rule:rgba(28,24,34,0.14); --rule-2:rgba(28,24,34,0.30);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection { background: var(--violet); color: var(--paper-3); }
+
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+  .font-mono    { font-family: var(--font-mono); }
+}
+
+@layer utilities {
+  /* dreamlike soft grain over the whole page */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--violet);
+  }
+
+  /* registration crop-mark corner */
+  .cropmark {
+    position: relative;
+  }
+  .cropmark::before,
+  .cropmark::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--rule-2);
+    border-style: solid;
+    border-width: 0;
+  }
+  .cropmark::before {
+    top: -1px; left: -1px;
+    border-top-width: 1px; border-left-width: 1px;
+  }
+  .cropmark::after {
+    bottom: -1px; right: -1px;
+    border-bottom-width: 1px; border-right-width: 1px;
+  }
+
+  .ink-underline {
+    background-image: linear-gradient(var(--violet), var(--violet));
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.45s cubic-bezier(0.4, 0, 0.1, 1);
+  }
+  .ink-underline:hover { background-size: 0% 2px; }
+
+  /* soft floating dreamlike glow */
+  .haze {
+    background:
+      radial-gradient(60% 50% at 22% 18%, rgba(123,95,192,0.18), transparent 70%),
+      radial-gradient(50% 50% at 82% 30%, rgba(201,87,127,0.10), transparent 72%),
+      radial-gradient(55% 55% at 60% 92%, rgba(79,180,199,0.10), transparent 72%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
