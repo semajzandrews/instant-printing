@@ -72,7 +72,7 @@ export default function Footer() {
             rel="noreferrer"
             className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-2 hover:text-violet transition-colors"
           >
-            Built by bysemaj.com
+            built bysemaj.com
           </a>
         </div>
       </div>
